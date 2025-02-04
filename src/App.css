@@ -1,0 +1,300 @@
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  background-color: #F8F9FA !important;
+}
+
+
+
+/* sidebar_css */
+.navbar {
+  background: #FFFFFF !important;
+  color: #111827;
+  padding: 10px 20px; /* Adjusted padding for better spacing */
+  display: flex;
+  justify-content: space-between;
+  position: fixed; /* Fixed to the top */
+  top: 0; /* Stick to the very top */
+  left: 0;
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensures it's above other elements */
+
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: 100px;
+}
+
+.navbar h6 {
+  color: black;
+}
+
+.app-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  background: #FFFFFF !important;
+  color: #111827 !important;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow-y: auto;
+  height: 100%;
+  padding: 0;
+}
+     
+.sidebar.expanded {
+  width: 235px;
+}
+
+.sidebar.collapsed {
+  width: 63px;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.menu-item:hover {
+ background-color: #E8E9EA !important;
+ color: #111827 !important;
+}
+.menu-item:hover span{
+  color: #111827 !important;
+}
+.menu-item:hover img{
+  color: #E8E9EA !important;
+}
+.menu-item {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 9px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.menu-item:hover i {
+  color: #111827 !important;
+}
+
+.menu-item.active {
+  background-color: #E8E9EA;
+  color: #111827;
+}
+
+.menu-item.active span{
+  color: #111827 !important;
+}
+
+.menu-icon {
+  margin-right: 15px;
+  font-size: 25px;
+margin-top: 8px;
+}
+
+.menu-text {
+  flex: 1;
+  transition: opacity 0.3s;
+}
+
+.sidebar.collapsed .menu-text {
+  opacity: 0;
+}
+
+.submenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #eceff3;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  position: relative;
+  margin-left: 30px;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.submenu.open {
+  max-height: 500px;
+  padding: 10px 0;
+}
+
+.submenu-item {
+  cursor: pointer;
+  padding: 10px 30px;
+
+  font-weight: 600;
+  color: black;
+}
+
+.submenu-item:hover {
+  background-color: #ECE9FF;
+  color: #111827;
+}
+
+.menu-toggle-icon {
+  margin-left: auto;
+  background-color: red;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item.open .menu-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.main-content {
+  flex: 1;
+  padding: 8px;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+}
+
+.menu-link {
+  color: black;
+  text-decoration: none;
+}
+
+.menu-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+}
+
+.dashboard-content {
+  padding: 15px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+    height: 100vh;
+  }
+
+  .sidebar.collapsed {
+    width: 12;
+  }
+
+  .main-content {
+    padding: 16px;
+    margin-left: 30px;
+  }
+
+  .toggle-button {
+    margin-left: 10px;
+  }
+}
+
+.sidebar-toggle {
+  cursor: pointer;
+  padding: 10px;
+  text-align: right;
+  }
+
+
+
+
+
+
+
+
+.btn:focus, .btn:active {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.main-content {
+  flex-grow: 1;
+  transition: margin-left 0.5s ease;
+  padding: 10px;
+}
+
+/* Adjust main content width when sidebar is collapsed */
+.app-container .main-content {
+  margin-left: 235px;
+  padding-top: 65px;
+  transition: margin-left 0.5s ease-in-out;
+}
+
+.app-container.collapsed .main-content {
+  margin-left: 63px;
+  transition: margin-left 0.5s ease-in-out;
+}
+
+
+.h4{
+  color:#111827 !important;
+}
+
+
+
+
+
+/* Sidebar general styles */
+.sidebar {
+  width: 240px; /* Expanded state width */
+  transition: all 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 60px; /* Collapsed state width */
+}
+
+/* Icon styles */
+.menu-link i {
+  display: inline-block;
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.menu-item .submenu-item {
+  padding-left: 20px; /* Indentation for submenu items */
+}
+
+/* Make icons visible in collapsed state */
+.sidebar.collapsed .menu-link i {
+  display: block;
+  font-size: 14px !important; /* Adjust the icon size as needed */
+  margin: 0;
+  text-align: center; /* Center the icons */
+  margin-left: -10px !important;
+}
+
+/* Menu text visibility in collapsed state */
+.sidebar.collapsed .menu-text {
+  display: none; /* Hide text in collapsed state */
+}
+
+.sidebar.collapsed .submenu-item {
+  padding-left: 64px; /* Indentation for submenu items */
+}
+
+/* Additional styles for expanded state */
+.sidebar.expanded .menu-text {
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

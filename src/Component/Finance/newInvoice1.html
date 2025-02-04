@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .btn-primary, .modal-header {
+            background-color: #009DC4 !important;
+            border-color: #009DC4 !important;
+        }
+        .btn-primary:hover {
+            background-color: #007da1 !important;
+        }
+        .btn-outline-secondary {
+            border-color: #009DC4 !important;
+            color: #009DC4 !important;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #009DC4 !important;
+            color: white !important;
+        }
+        .modal-header {
+            color: white;
+        }
+    </style>
+    <title>Invoice Page</title>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="card p-4">
+            <h4 class="mb-4">Create Invoice</h4>
+            <form>
+                <!-- Bill To Section -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="contact" class="form-label">Contact</label>
+                        <input type="text" class="form-control" id="contact" placeholder="Add contact">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="company" class="form-label">Company</label>
+                        <input type="text" class="form-control" id="company" placeholder="Add company">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="billingAddress" class="form-label">Billing Address</label>
+                        <input type="text" class="form-control" id="billingAddress" placeholder="Add billing address">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="shippingAddress" class="form-label">Shipping Address</label>
+                        <input type="text" class="form-control" id="shippingAddress" placeholder="Add shipping address">
+                    </div>
+                </div>
+
+                <!-- Invoice Details -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="invoiceDate" class="form-label">Invoice Date</label>
+                        <input type="date" class="form-control" id="invoiceDate">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="paymentTerms" class="form-label">Payment Terms</label>
+                        <select class="form-select" id="paymentTerms">
+                            <option value="Net 30">Net 30</option>
+                            <option value="Net 15">Net 15</option>
+                            <option value="Due on Receipt">Due on Receipt</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dueDate" class="form-label">Due Date</label>
+                        <input type="date" class="form-control" id="dueDate">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="invoiceNumber" class="form-label">Next Invoice Number</label>
+                        <input type="text" class="form-control" id="invoiceNumber" placeholder="INVOICE-755477">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="poNumber" class="form-label">PO Number</label>
+                        <input type="text" class="form-control" id="poNumber">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="reference" class="form-label">Reference</label>
+                        <input type="text" class="form-control" id="reference">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="notes" class="form-label">Notes</label>
+                        <input type="text" class="form-control" id="notes">
+                    </div>
+                </div>
+
+                <!-- Line Items Section -->
+                <div class="mb-3">
+                    <h5>Line Items</h5>
+                    <button type="button" class="btn btn-outline-primary btn-sm">Add Line Item</button>
+                </div>
+
+                <!-- Summary Section -->
+                <div class="mt-4">
+                    <h5>Summary</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="subtotal" class="form-label">Subtotal</label>
+                            <input type="text" class="form-control" id="subtotal" placeholder="0.00">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="discount" class="form-label">Discount/Fee/Tax</label>
+                            <input type="text" class="form-control" id="discount" placeholder="0.00">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#invoiceModal">Ready</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Terms Section -->
+        <div class="card mt-4 p-4">
+            <h5>Comments</h5>
+            <p><strong>Terms:</strong> Payment of the full amount outstanding on the invoice is due thirty calendar days after the invoice date (or as per the net term shown on the invoice if different). Late invoice payments may incur additional charges. For milestone payment agreements, if there are delays in processing payments on the agreed-upon dates, BPAV Technology Group reserves the right to temporarily halt work until payments are successfully processed. Any unique payment arrangements beyond BPAV's standard terms must adhere to the agreed-upon payment schedule for each specific case.</p>
+            <p>
+                <strong>BPAV TECHNOLOGY GROUP LTD</strong><br>
+                Bank Account Name: BPAV Technology Group Ltd<br>
+                Bank Account Address: Monzo Bank, Broadwalk House, 5 Appold St, London EC2A 2AG, United Kingdom<br>
+                Sort Code: 04-00-04<br>
+                Account number: 45715540<br>
+                BIC Number: MONZGB2L<br>
+                IBAN: GB34 MONZ 0400 0445 7155 40
+            </p>
+            <p>
+                Copyright &copy; 2025 BPAV Technology Group Ltd | All rights reserved | Company Number 14304458.
+            </p>
+        </div>
+
+        <!-- Payment Collection Section -->
+        <div class="card mt-4 p-4">
+            <h5>Payment Collection</h5>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="acceptOnlinePayments" checked>
+                <label class="form-check-label" for="acceptOnlinePayments">Accept online payments</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Accepted forms of payment</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="creditCard" checked>
+                    <label class="form-check-label" for="creditCard">Credit or debit card</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="bacs" checked>
+                    <label class="form-check-label" for="bacs">BACS (direct debit)</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="billingAddress" checked>
+                    <label class="form-check-label" for="billingAddress">Collect billing address for credit card purchases</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="shippingAddress">
+                    <label class="form-check-label" for="shippingAddress">Collect shipping address</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="storePaymentMethods">
+                    <label class="form-check-label" for="storePaymentMethods">Store payment methods for future charges</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="partialPayments">
+                    <label class="form-check-label" for="partialPayments">Allow your customer to pay an amount less than the balance due</label>
+                </div>
+            </div>
+            <h6>Advanced Settings</h6>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="language" class="form-label">Language</label>
+                    <select class="form-select" id="language">
+                        <option value="English">English</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="locale" class="form-label">Locale</label>
+                    <select class="form-select" id="locale">
+                        <option value="United Kingdom">United Kingdom</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="domain" class="form-label">Domain</label>
+                <input type="text" class="form-control" id="domain" placeholder="www.example.com">
+            </div>
+            <div class="mb-3">
+                <label for="contentSlug" class="form-label">Content Slug</label>
+                <input type="text" class="form-control" id="contentSlug" placeholder="example-slug">
+            </div>
+            <div class="mb-3">
+                <label for="invoiceUrl" class="form-label">Invoice URL</label>
+                <input type="text" class="form-control" id="invoiceUrl" placeholder="https://www.example.com/invoice">
+            </div>
+            <div class="mb-3">
+                <label for="taxId" class="form-label">Tax ID</label>
+                <input type="text" class="form-control" id="taxId" placeholder="GB VAT 123456789">
+            </div>
+        </div>
+
+        <!-- Invoice Modal -->
+        <div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="invoiceModalLabel">Invoice created and ready to send!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="toEmail" class="form-label">To</label>
+                                <select class="form-select" id="toEmail">
+                                    <option value="test@test.com">Test Unknown (test@test.com)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ccEmail" class="form-label">Cc</label>
+                                <select class="form-select" id="ccEmail">
+                                    <option value="">Search</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fromEmail" class="form-label">From</label>
+                                <input type="text" class="form-control" id="fromEmail" value="Benjamin Price from BPAV Technology Group Ltd (accounts...)" disabled>
+                            </div>
+                        </form>
+                        <p class="text-muted mt-3"><a href="#">Learn more about sending invoices</a></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Send invoice</button>
+                        <button type="button" class="btn btn-outline-secondary">Write email manually</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+<!-- Converted code in react -->
+
+
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const InvoicePage = () => {
+    return (
+        <div className="container my-5">
+            <div className="card p-4">
+                <h4 className="mb-4">Create Invoice</h4>
+                <form>
+                    {/* Bill To Section */}
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label htmlFor="contact" className="form-label">Contact</label>
+                            <input type="text" className="form-control" id="contact" placeholder="Add contact" />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="company" className="form-label">Company</label>
+                            <input type="text" className="form-control" id="company" placeholder="Add company" />
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label htmlFor="billingAddress" className="form-label">Billing Address</label>
+                            <input type="text" className="form-control" id="billingAddress" placeholder="Add billing address" />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="shippingAddress" className="form-label">Shipping Address</label>
+                            <input type="text" className="form-control" id="shippingAddress" placeholder="Add shipping address" />
+                        </div>
+                    </div>
+
+                    {/* Invoice Details */}
+                    <div className="row mb-3">
+                        <div className="col-md-4">
+                            <label htmlFor="invoiceDate" className="form-label">Invoice Date</label>
+                            <input type="date" className="form-control" id="invoiceDate" />
+                        </div>
+                        <div className="col-md-4">
+                            <label htmlFor="paymentTerms" className="form-label">Payment Terms</label>
+                            <select className="form-select" id="paymentTerms">
+                                <option value="Net 30">Net 30</option>
+                                <option value="Net 15">Net 15</option>
+                                <option value="Due on Receipt">Due on Receipt</option>
+                            </select>
+                        </div>
+                        <div className="col-md-4">
+                            <label htmlFor="dueDate" className="form-label">Due Date</label>
+                            <input type="date" className="form-control" id="dueDate" />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label htmlFor="invoiceNumber" className="form-label">Next Invoice Number</label>
+                            <input type="text" className="form-control" id="invoiceNumber" placeholder="INVOICE-755477" />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="poNumber" className="form-label">PO Number</label>
+                            <input type="text" className="form-control" id="poNumber" />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label htmlFor="reference" className="form-label">Reference</label>
+                            <input type="text" className="form-control" id="reference" />
+                        </div>
+                        <div className="col-md-6">
+                            <label htmlFor="notes" className="form-label">Notes</label>
+                            <input type="text" className="form-control" id="notes" />
+                        </div>
+                    </div>
+
+                    {/* Line Items Section */}
+                    <div className="mb-3">
+                        <h5>Line Items</h5>
+                        <button type="button" className="btn btn-outline-primary btn-sm">Add Line Item</button>
+                    </div>
+
+                    {/* Summary Section */}
+                    <div className="mt-4">
+                        <h5>Summary</h5>
+                        <div className="row mb-3">
+                            <div className="col-md-6">
+                                <label htmlFor="subtotal" className="form-label">Subtotal</label>
+                                <input type="text" className="form-control" id="subtotal" placeholder="0.00" />
+                            </div>
+                            <div className="col-md-6">
+                                <label htmlFor="discount" className="form-label">Discount/Fee/Tax</label>
+                                <input type="text" className="form-control" id="discount" placeholder="0.00" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="text-end">
+                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#invoiceModal">Ready</button>
+                    </div>
+                </form>
+            </div>
+
+            {/* Terms Section */}
+            <div className="card mt-4 p-4">
+                <h5>Comments</h5>
+                <p><strong>Terms:</strong> Payment of the full amount outstanding on the invoice is due thirty calendar days after the invoice date (or as per the net term shown on the invoice if different). Late invoice payments may incur additional charges. For milestone payment agreements, if there are delays in processing payments on the agreed-upon dates, BPAV Technology Group reserves the right to temporarily halt work until payments are successfully processed. Any unique payment arrangements beyond BPAV's standard terms must adhere to the agreed-upon payment schedule for each specific case.</p>
+                <p>
+                    <strong>BPAV TECHNOLOGY GROUP LTD</strong><br />
+                    Bank Account Name: BPAV Technology Group Ltd<br />
+                    Bank Account Address: Monzo Bank, Broadwalk House, 5 Appold St, London EC2A 2AG, United Kingdom<br />
+                    Sort Code: 04-00-04<br />
+                    Account number: 45715540<br />
+                    BIC Number: MONZGB2L<br />
+                    IBAN: GB34 MONZ 0400 0445 7155 40
+                </p>
+                <p>
+                    Copyright &copy; 2025 BPAV Technology Group Ltd | All rights reserved | Company Number 14304458.
+                </p>
+            </div>
+
+            {/* Payment Collection Section */}
+            <div className="card mt-4 p-4">
+                <h5>Payment Collection</h5>
+                <div className="form-check form-switch mb-3">
+                    <input className="form-check-input" type="checkbox" id="acceptOnlinePayments" defaultChecked />
+                    <label className="form-check-label" htmlFor="acceptOnlinePayments">Accept online payments</label>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Accepted forms of payment</label>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" id="creditCard" defaultChecked />
+                        <label className="form-check-label" htmlFor="creditCard">Credit or debit card</label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" id="bacs" defaultChecked />
+                        <label className="form-check-label" htmlFor="bacs">BACS (direct debit)</label>
+                    </div>
+                </div>
+                <div className="mb-3">
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" id="billingAddress" defaultChecked />
+                        <label className="form-check-label" htmlFor="billingAddress">Collect billing address for credit card purchases</label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" id="shippingAddress" />
+                        <label className="form-check-label" htmlFor="shippingAddress">Collect shipping address</label>
+                    </div>
+                </div>
+                <div className="mb-3">
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" id="storePaymentMethods" />
+                        <label className="form-check-label" htmlFor="storePaymentMethods">Store payment methods for future charges</label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" id="partialPayments" />
+                        <label className="form-check-label" htmlFor="partialPayments">Allow your customer to pay an amount less than the balance due</label>
+                    </div>
+                </div>
+                <h6>Advanced Settings</h6>
+                <div className="row mb-3">
+                    <div className="col-md-6">
+                        <label htmlFor="language" className="form-label">Language</label>
+                        <select className="form-select" id="language">
+                            <option value="English">English</option>
+                        </select>
+                    </div>
+                    <div className="col-md-6">
+                        <label htmlFor="locale" className="form-label">Locale</label>
+                        <select className="form-select" id="locale">
+                            <option value="United Kingdom">United Kingdom</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="domain" className="form-label">Domain</label>
+                    <input type="text" className="form-control" id="domain" placeholder="www.example.com" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="contentSlug" className="form-label">Content Slug</label>
+                    <input type="text" className="form-control" id="contentSlug" placeholder="example-slug" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="invoiceUrl" className="form-label">Invoice URL</label>
+                    <input type="text" className="form-control" id="invoiceUrl" placeholder="https://www.example.com/invoice" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="taxId" className="form-label">Tax ID</label>
+                    <input type="text" className="form-control" id="taxId" placeholder="GB VAT 123456789" />
+                </div>
+            </div>
+
+            {/* Invoice Modal */}
+            <div className="modal fade" id="invoiceModal" tabIndex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="invoiceModalLabel">Invoice created and ready to send!</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="mb-3">
+                                    <label htmlFor="toEmail" className="form-label">To</label>
+                                    <select className="form-select" id="toEmail">
+                                        <option value="test@test.com">Test Unknown (test@test.com)</option>
+                                    </select>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="ccEmail" className="form-label">Cc</label>
+                                    <select className="form-select" id="ccEmail">
+                                        <option value="">Search</option>
+                                    </select>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="fromEmail" className="form-label">From</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="fromEmail"
+                                        value="Benjamin Price from BPAV Technology Group Ltd (accounts...)"
+                                        disabled
+                                    />
+                                </div>
+                            </form>
+                            <p className="text-muted mt-3">
+                                <a href="#">Learn more about sending invoices</a>
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-primary">Send invoice</button>
+                            <button type="button" className="btn btn-outline-secondary">Write email manually</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default InvoicePage;

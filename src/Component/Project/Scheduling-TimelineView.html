@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedulinge-Timeline vive</title>
+</head>
+
+<body>
+ 
+  <div id="main">
+    <div class="container mt-4">
+      <h3 class="text-primary">Shift Calendar</h3>
+      <div id="calendar"></div>
+    </div>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          events: [
+            {
+              title: 'Available Shift',
+              start: '2024-11-01',
+              color: '#28a745'
+            },
+            {
+              title: 'Unassigned Shift',
+              start: '2024-11-07',
+              color: '#ffc107'
+            },
+            {
+              title: 'Assigned Shift',
+              start: '2024-11-10',
+              color: '#dc3545'
+            }
+          ],
+          aspectRatio: 1.35,
+          editable: true,
+          eventDisplay: 'block',
+
+          // Add new events on date click
+          dateClick: function (info) {
+            var title = prompt("Enter event title:");
+            if (title) {
+              calendar.addEvent({
+                title: title,
+                start: info.dateStr,
+                color: '#007bff'
+              });
+              alert("Event added!");
+            }
+          },
+
+          // Delete events on event click
+          eventClick: function (info) {
+            var confirmDelete = confirm(`Do you want to delete the event: ${info.event.title}?`);
+            if (confirmDelete) {
+              info.event.remove(); // Remove the event
+              alert("Event deleted!");
+            }
+          }
+        });
+
+        calendar.render();
+      });
+    </script>
+  </div>
+</body>
+
+</html>

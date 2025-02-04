@@ -1,0 +1,19 @@
+.head-content .btn-group{
+    margin-left: 15px;
+    align-items: baseline;
+}
+.head-content input{
+    border: 0px;
+}
+.head-content span{
+    color: #229fba;
+    font-weight: 600;
+    background-color: transparent;
+    cursor: pointer;
+}
+.table-section{
+    margin-top: 30px;
+}
+.ad{
+    color: #229fba;
+}

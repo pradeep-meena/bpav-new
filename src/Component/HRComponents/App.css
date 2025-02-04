@@ -1,0 +1,287 @@
+
+.product-slider {
+    position: relative;
+    overflow: hidden;
+}
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.product {
+    flex: 0 0 33.33%;
+    padding: 15px;
+    text-align: center;
+}
+.product img {
+    height: auto;
+    border-radius: 10px;
+}
+.carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+.carousel-control-prev {
+    left: -15px;
+}
+.carousel-control-next {
+    right: -15px;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: darkgray;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+.slider-indicators {
+    text-align: center;
+    margin-top: 10px;
+}
+.slider-indicators button {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+}
+.slider-indicators button.active {
+    background-color: darkgray;
+}
+.table td{
+    border-bottom-width: 0px;
+}
+@media screen and (min-width:300px) and (max-width:720px) {
+    table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+}
+/*Candidate Score Card*/
+.table td{
+    border-bottom-width: 0px;
+}
+.profile-row {
+display: none;
+transition: all 0.3s ease-in-out;
+}
+
+.arrow-rotated {
+transform: rotate(-180deg);
+transition: transform 0.3s ease;
+}
+/*Recuretiment*/
+.table td{
+    border-bottom-width: 0px;
+}
+.profile-row {
+display: none;
+transition: all 0.3s ease-in-out;
+}
+
+.arrow-rotated {
+transform: rotate(-180deg);
+transition: transform 0.3s ease;
+}
+/*Composition*/
+.timeline-item-circle {
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    background-color: greenyellow;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: -13px; /* To center the circle over the line */
+    top: 42px;
+    z-index: 1;
+  }
+  .secondcircle{
+      top: 165px;
+      background-color: yellow;
+  }
+  .thirdcircle{
+      top: 285px;
+      background-color: red;
+  }
+  .fourthcircle{
+      top: 405px;
+      background-color: orangered;
+  }
+  .fifthcircle{
+      top: 525px;
+      background-color: orange;
+  }
+  .row .stepline{
+      border-left: 1px solid #6c757d;
+      height: 610px;
+      position: absolute;
+      left: 19%;
+      margin-left: -3px;
+      top: 30%;
+  }
+  @media screen and (min-width:320px) and (max-width:720px){
+     .stepline {
+        display: none;
+    }
+  }
+
+/*Performance*/
+.circle-container {
+    text-align: center;
+}
+
+.progress-circle {
+width: 100px;
+height: 100px;
+border: 10px solid #30c7a3;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+
+.progress-circle span {
+font-size: 18px;
+font-weight: bold;
+}
+.circle-container {
+    text-align: center;
+}
+
+.progress-circle1 {
+width: 50px;
+height: 50px;
+border: 5px solid #86b7fe;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+
+.progress-circle1 span {
+font-size: 18px;
+}
+.progress-circle2 {
+width: 50px;
+height: 50px;
+border: 5px solid #86b7fe;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+
+.progress-circle2 span {
+font-size: 18px;
+}
+
+.fw-bold {
+font-weight: bold;
+}
+
+/*MY Issues*/
+.status-active {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+  .add-goal-btn {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  .add-goal-btn:hover {
+    background-color: #ff5722;
+  }
+  table {
+    width: 100%;
+  }
+  @media screen and (min-width:320px) and (max-width:720px){
+      table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+  }
+
+/* compensation css */
+.compensation-card {
+    background-color: #f5f5f7;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.chart {
+    height: 300px;
+    margin-top: 20px;
+}
+.circular-chart {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.circular-chart svg {
+    transform: rotate(-90deg);
+}
+
+.circular-chart .circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 8;
+}
+
+.circular-chart .circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke: #00d8ff;
+}
+.compensation {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.circle-chart {
+    position: relative;
+    margin: 20px auto;
+    height: 150px;
+    width: 150px;
+    background: conic-gradient(
+        #7b5cf7 0% 60%, 
+        #45c6f7 60% 90%, 
+        #ff6db5 90% 100%
+    );
+    border-radius: 50%;
+}
+.circle-chart span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.25rem;
+}
+.equity-bar {
+    background: #333342;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: relative;
+}
+.vested-bar {
+    background: #24dcea;
+    height: 10px;
+    border-radius: 5px;
+    width: 60%;
+    position: absolute;
+}

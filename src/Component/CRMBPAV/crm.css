@@ -1,0 +1,40 @@
+.content {
+    padding: 20px;
+}
+.tab-pane {
+    padding-top: 20px;
+}
+.badge-beta {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 5px;
+    font-size: 0.75rem;
+}
+.sidebar-menu {
+    border-right: 1px solid #e9ecef;
+    height: 100%;
+}
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+.menu-item:last-child {
+    border-bottom: none;
+}
+.menu-item .text-info {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.menu-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.menu-item a:hover {
+    text-decoration: underline;
+}
