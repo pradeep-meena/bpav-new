@@ -182,7 +182,7 @@ function AppContent() {
 
 
         {/* CRM Routes */}
-              <Route path='/crm/dashboard'  element={<Home />} />
+              <Route path='/crm/dashboard'  element={<CrmDashboard />} />
               <Route path="/crm/contacts"   element={<ContactListHead />} />
               <Route path='/crm/companies' element={<Companies />} />
               <Route path='/crm/deals' element={<DealsKanban  /> } />
