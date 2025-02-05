@@ -1,200 +1,135 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button, Form, Nav, Table } from "react-bootstrap";
-import { FaFile } from "react-icons/fa";
-import { IoMdMenu } from "react-icons/io";
-import { CiSaveUp2 } from "react-icons/ci";
-// import { all_routes } from "../router/all_routes";
-import { Link, useNavigate } from "react-router-dom";
-const DealsKanban = () => {
-  const navigate = useNavigate();
-  //   const [activeTab, setActiveTab] = useState("All deals");
-  const [activeTab, setActiveTab] = useState("All contacts");
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-  const tabs = ["All deals", "My deals", "open deals"];
-
+function Dealskanban() {
   return (
-    <div className="page-wrapper">
-      <Container fluid className="py-3 border-bottom bg-white">
-        {/* Tabs Section */}
-
-        {/* Header Top Section */}
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <h4 className="fw-bold text-primary">Deals</h4>
-          <div className="d-flex gap-2">
-            <Button variant="outline-secondary">Actions</Button>
-            <Button variant="outline-secondary">Import</Button>
-            <Button variant="danger">Create deal</Button>
-          </div>
-        </div>
-        <div className=" d-flex mb-4  flex-wrap  ">
-          {tabs.map((tab, index) => (
-            <div
-              key={index}
-              className={` py-2 ${activeTab === tab ? "active" : ""}`}
-              style={{
-                border:
-                  activeTab === tab
-                    ? "1px solidrgb(72, 74, 77)"
-                    : "1px solid #ccc",
-                paddingRight: "80px",
-                paddingLeft: "10px",
-                width: "25%",
-                backgroundColor:
-                  activeTab === tab ? "rgba(54, 56, 58, 0.19)" : "#ffffff",
-                color: activeTab === tab ? "#6c757d" : "#6c757d",
-                fontSize: "1rem",
-                cursor: "pointer",
-              }}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
+    <div className="deal-content-section mt-5">
+      <div className="container">
+        <div className="deal-main">
+          {/* Header Section */}
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <h3>Deals - Sales</h3>
+              <p className="text-muted">Dashboard / Deal</p>
             </div>
-          ))}
-          <div className="ms-auto  d-flex">
-            <button
-              className="btn btn-a"
-              style={{
-                color: "#26a0fc",
-
-                fontSize: "0.9rem",
-                fontWeight: "500",
-              }}
-            >
-              + Add view (5/50)
-            </button>
-            <button
-              className="btn btn-a"
-              style={{
-                color: "#26a0fc",
-
-                fontSize: "0.9rem",
-                fontWeight: "500",
-              }}
-            >
-              All views
-            </button>
-          </div>
-        </div>
-
-        {/* Filters Section */}
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          {/* Left Filters */}
-          <div className="d-flex gap-2 align-items-center">
-            <Button
-              variant="outline-primary"
-              className="d-flex align-items-center"
-            >
-              <IoMdMenu />
-            </Button>
-            <Form.Select style={{ width: "200px" }}>
-              <option>Sales pipeline</option>
-            </Form.Select>
-            <Button variant="outline-primary">Deal owner</Button>
-            <Button variant="outline-primary">Create date</Button>
-            <Button variant="outline-primary">More</Button>
-            <Button variant="outline-primary">
-              <i className="bi bi-funnel"></i> Advanced filters
-            </Button>
-          </div>
-
-          {/* Right Filters */}
-          <div className="d-flex align-items-center gap-3">
-            <span className="text-primary">Hide Insights</span>
-            <div className="d-flex gap-2">
-              <Button variant="outline-secondary">
-                <FaFile />
-              </Button>
-              <Button variant="outline-secondary">
-                <CiSaveUp2 />
-              </Button>
+            <div>
+              <select className="form-select d-inline w-auto">
+                <option>Sales</option>
+              </select>
+              <button className="btn btn-primary mx-1">📄</button>
+              <button className="btn btn-success mx-1">📊</button>
+              <button className="btn btn-warning mx-1">📥</button>
+              <button className="btn btn-danger mx-1">➕</button>
             </div>
           </div>
-        </div>
 
-        {/* Insights Section */}
-        <Row className="mt-4 text-center">
-          {[
-            {
-              title: "TOTAL DEAL AMOUNT",
-              value: "£1.18M",
-              detail: "Average per deal: £4.09K",
-            },
-            {
-              title: "WEIGHTED DEAL AMOUNT",
-              value: "£616.62K",
-              detail: "Average per deal: £2.13K",
-            },
-            {
-              title: "OPEN DEAL AMOUNT",
-              value: "£590.58K",
-              detail: "Average per deal: £10.01K",
-            },
-            {
-              title: "CLOSED DEAL AMOUNT",
-              value: "£201.02K",
-              detail: "Average per deal: £1.65K",
-            },
-            { title: "NEW DEAL AMOUNT", value: "£0", detail: "" },
-            { title: "AVERAGE DEAL AGE", value: "22 days", detail: "" },
-          ].map((item, index) => (
-            <Col key={index}>
-              <h5 className="fw-bold">{item.title}</h5>
-              <h3 className="text-primary">{item.value}</h3>
-              {item.detail && <p>{item.detail}</p>}
-            </Col>
-          ))}
-        </Row>
-        {/* Table Section */}
-        <div className="overflow-auto pt-4" style={{ whiteSpace: "nowrap" }}>
-          <Table bordered className="text-center">
-            <thead className="bg-light">
-              <tr>
-                <th>Qualified</th>
-                <th>Contact Made</th>
-                <th>Meeting Scheduled</th>
-                <th>Quoting</th>
-                <th>Quoted</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {/* <Link to={all_routes.dealscard}> */}
-                  <div className="d-flex flex-column align-items-start" onClick={() => navigate('/crm/dealscard')}>
-                    <span>StraightIn Lead</span>
-                    <Button
-                      size="sm"
-                      variant="outline-primary"
-                      className="mt-2"
-                    >
-                      Add Contact
-                    </Button>
-                    <small className="text-muted mt-2">
-                      No activity for 9 days
-                    </small>
+          {/* Summary Section */}
+          <div className="row mb-4">
+            {[
+              { title: "Total Deals", amount: "$396,000.00", color: "primary" },
+              {
+                title: "This Month Total Deals",
+                amount: "$0.00",
+                color: "success",
+              },
+              {
+                title: "This Week Total Deals",
+                amount: "$0.00",
+                color: "warning",
+              },
+              {
+                title: "Last 30 Days Total Deals",
+                amount: "$0.00",
+                color: "danger",
+              },
+            ].map((item, index) => (
+              <div key={index} className="col-md-3">
+                <div
+                  className={`card text-white bg-${item.color} shadow-sm p-3`}
+                >
+                  <h5>{item.title}</h5>
+                  <p className="fw-bold">{item.amount}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Deals Board */}
+          <div className="row">
+            {/* Initial Contact Stage */}
+            <div className="col-md-3">
+              <div className="card shadow-sm bg-white p-3">
+                <p className="fw-bold">
+                  Initial Contact{" "}
+                  <button className="btn btn-sm btn-success ms-2">4</button>
+                </p>
+                {["Win", "Win", "Win", "Win"].map((status, index) => (
+                  <div key={index} className="card p-2 mt-2 shadow-sm">
+                    <button className="btn btn-sm btn-success">{status}</button>
+                    <p className="fw-bold mt-2">Expansion Deal</p>
+                    <p>💲 $50,000.00</p>
+                    <p>👥 2 Users</p>
                   </div>
-                  {/* </Link> */}
-                </td>
-                <td>No activity</td>
-                <td>No activity</td>
-                <td>No activity</td>
-                <td>No activity</td>
-              </tr>
-            </tbody>
-            <tfoot className="bg-light">
-              <tr>
-                <td>Total: £0</td>
-                <td>Total: £0</td>
-                <td>Total: £0</td>
-                <td>Total: £0</td>
-                <td>Total: £0</td>
-              </tr>
-            </tfoot>
-          </Table>
+                ))}
+              </div>
+            </div>
+
+            {/* Qualification Stage */}
+            <div className="col-md-3">
+              <div className="card shadow-sm bg-white p-3">
+                <p className="fw-bold">Qualification</p>
+                <div className="card p-2 mt-2 shadow-sm">
+                  <button className="btn btn-sm btn-warning">Pending</button>
+                  <p className="fw-bold mt-2">Competitive Win</p>
+                  <p>💲 $55,000.00</p>
+                  <p>👥 1 User</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Meeting Stage */}
+            <div className="col-md-3">
+              <div className="card shadow-sm bg-white p-3">
+                <p className="fw-bold">Meeting</p>
+                <div className="card p-2 mt-2 shadow-sm">
+                  <div className="d-flex gap-1 w-100">
+                    <button className="btn btn-sm btn-info">New</button>
+                    <button className="btn btn-sm btn-warning">Pending</button>
+                    <button className="btn btn-sm btn-success">Win</button>
+                  </div>
+
+                  <p className="fw-bold mt-2">Key Account Acquisition</p>
+                  <p>💲 $30,000.00</p>
+                  <p>👥 4 Users</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Proposal Stage */}
+            <div className="col-md-3">
+              <div className="card shadow-sm bg-white p-3">
+                <p className="fw-bold">Proposal</p>
+                <div className="card p-2 mt-2 shadow-sm">
+                <div className="d-flex gap-1 w-100">
+                  <button className="btn btn-sm btn-secondary">On Hold</button>
+                  <button className="btn btn-sm btn-info ms-1">New</button>
+                  <button className="btn btn-sm btn-warning ms-1">
+                    Pending
+                  </button>
+                  </div>
+                  <p className="fw-bold mt-2">Solution Customization</p>
+                  <p>💲 $35,000.00</p>
+                  <p>👥 3 Users</p>
+                </div>
+              </div>
+            </div>
+
+          
+          </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
-};
+}
 
-export default DealsKanban;
+export default Dealskanban;
