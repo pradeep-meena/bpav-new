@@ -284,9 +284,15 @@ margin-top: 8px;
 .sidebar.expanded .menu-text {
   display: inline-block;
 }
+.fc-header-toolbar{
+  overflow-x: auto;
+}
 
 
-
+.custom-gap {
+  display: flex;
+  gap: 2px; 
+}
 
 
 
