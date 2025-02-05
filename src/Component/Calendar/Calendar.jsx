@@ -9,24 +9,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { DatePicker, TimePicker } from "antd";
 // import { Nullable } from "primereact/ts-helpers";
 // import PredefinedDateRanges from "../../../core/common/datePicker";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 import AddTask from "../Project/ProjectAddTask";
 // import CollapseHeader from "../../../core/common/collapse-header/collapse-header";
 // import ImageWithBasePath from "../../../core/common/imageWithBasePath";
 
 const Calendars = () => {
   const navigate = useNavigate();
-//   const routes = all_routes;
+  //   const routes = all_routes;
   const [showAddEventModal, setShowAddEventModal] = useState(false);
   const [showEventDetailsModal, setShowEventDetailsModal] = useState(false);
-  const [eventDetails, setEventDetails] = useState( "" );
+  const [eventDetails, setEventDetails] = useState("");
 
   const getModalContainer = () => {
-    const modalElement = document.getElementById('modal-datepicker');
+    const modalElement = document.getElementById("modal-datepicker");
     return modalElement ? modalElement : document.body; // Fallback to document.body if modalElement is null
   };
   const getModalContainer2 = () => {
-    const modalElement = document.getElementById('modal_datepicker');
+    const modalElement = document.getElementById("modal_datepicker");
     return modalElement ? modalElement : document.body; // Fallback to document.body if modalElement is null
   };
   const calendarRef = useRef(null);
@@ -46,47 +46,47 @@ const Calendars = () => {
 
   const events = [
     {
-      title: 'Meeting with Team Dev',
-      className: 'badge badge-pink-transparent',
-      backgroundColor: '#FFEDF6',
-      textColor: "#FD3995",		
+      title: "Meeting with Team Dev",
+      className: "badge badge-pink-transparent",
+      backgroundColor: "#FFEDF6",
+      textColor: "#FD3995",
       start: new Date(Date.now() - 168000000).toJSON().slice(0, 10),
       end: new Date(Date.now() - 168000000).toJSON().slice(0, 10),
     },
     {
-        title: 'UI/UX Team...',	
-        className: 'badge badge-secondary-transparent',
-        backgroundColor: '#EDF2F4' ,
-        textColor: "#0C4B5E",				  
-        start: new Date(Date.now() + 338000000).toJSON().slice(0, 10)
+      title: "UI/UX Team...",
+      className: "badge badge-secondary-transparent",
+      backgroundColor: "#EDF2F4",
+      textColor: "#0C4B5E",
+      start: new Date(Date.now() + 338000000).toJSON().slice(0, 10),
     },
     {
-        title: 'Data Update...',
-        className: 'badge badge-purple-transparent',
-        backgroundColor: '#F7EEF9',		
-        textColor: "#AB47BC",		  
-        start: new Date(Date.now() - 338000000).toJSON().slice(0, 10) 
+      title: "Data Update...",
+      className: "badge badge-purple-transparent",
+      backgroundColor: "#F7EEF9",
+      textColor: "#AB47BC",
+      start: new Date(Date.now() - 338000000).toJSON().slice(0, 10),
     },
     {
-        title: 'Meeting with Team Dev',
-        className: 'badge badge-dark-transparent',
-        backgroundColor: '#E8E9EA',		
-        textColor: "#212529",				  
-        start: new Date(Date.now() + 68000000).toJSON().slice(0, 10) 
+      title: "Meeting with Team Dev",
+      className: "badge badge-dark-transparent",
+      backgroundColor: "#E8E9EA",
+      textColor: "#212529",
+      start: new Date(Date.now() + 68000000).toJSON().slice(0, 10),
     },
     {
-        title: 'Design System',
-        className: 'badge badge-danger-transparent',
-        backgroundColor: '#FAE7E7',	
-        textColor: "#E70D0D",				  
-        start: new Date(Date.now() + 88000000).toJSON().slice(0, 10) 
+      title: "Design System",
+      className: "badge badge-danger-transparent",
+      backgroundColor: "#FAE7E7",
+      textColor: "#E70D0D",
+      start: new Date(Date.now() + 88000000).toJSON().slice(0, 10),
     },
   ];
 
   return (
     <>
       {/* Page Wrapper */}
-     <div className="page-wrapper">
+      <div className="page-wrapper">
         <div className="content">
           {/* Breadcrumb */}
           {/* <div className="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
@@ -164,88 +164,95 @@ const Calendars = () => {
             </div>
           </div> */}
           <div className="row">
-  {/* Calendar Sidebar */}
-  <div className="col-12 col-md-3 theiaStickySidebar mb-3">
-    <div className="stickybar">
-      <div className="card shadow-sm">
-        <div className="card-body p-3">
-          <div className="border-bottom pb-2 mb-4">
-            <Calendar
-              className="datepickers mb-4 w-100"
-              value={date}
-              onChange={(e) => setDate(e.value)} // Fixed onChange event
-              inline={true}
-            />
-          </div>
+            {/* Calendar Sidebar */}
+            <div className="col-12 col-md-3 theiaStickySidebar mb-3">
+              <div className="stickybar">
+                <div className="card shadow-sm">
+                  <div className="card-body p-3">
+                    <div className="border-bottom pb-2 mb-4">
+                      <Calendar
+                        className="datepickers mb-4 w-100"
+                        value={date}
+                        onChange={(e) => setDate(e.value)} // Fixed onChange event
+                        inline={true}
+                      />
+                    </div>
 
-          {/* Upcoming Event */}
-          <div className="border-bottom pb-2 mb-4">
-            <h5 className="mb-2">
-              Upcoming Event
-              <span className="badge bg-success rounded-pill ms-2">15</span>
-            </h5>
-            <div className="border-start border-primary border-3 mb-3 ps-3">
-              <h6 className="fw-medium mb-1">Meeting with Devs</h6>
-              <p className="fs-12">
-                <i className="ti ti-calendar-check text-info me-2" />
-                15 Mar 2025
-              </p>
+                    {/* Upcoming Event */}
+                    <div className="border-bottom pb-2 mb-4">
+                      <h5 className="mb-2">
+                        Upcoming Event
+                        <span className="badge bg-success rounded-pill ms-2">
+                          15
+                        </span>
+                      </h5>
+                      <div className="border-start border-primary border-3 mb-3 ps-3">
+                        <h6 className="fw-medium mb-1">Meeting with Devs</h6>
+                        <p className="fs-12">
+                          <i className="ti ti-calendar-check text-info me-2" />
+                          15 Mar 2025
+                        </p>
+                      </div>
+                      <div className="border-start border-danger border-3 mb-3 ps-3">
+                        <h6 className="fw-medium mb-1">
+                          Design System With Client
+                        </h6>
+                        <p className="fs-12">
+                          <i className="ti ti-calendar-check text-info me-2" />
+                          24 Mar 2025
+                        </p>
+                      </div>
+                      <div className="border-start border-success border-3 mb-3 ps-3">
+                        <h6 className="fw-medium mb-1">UI/UX Team Call</h6>
+                        <p className="fs-12">
+                          <i className="ti ti-calendar-check text-info me-2" />
+                          28 Mar 2025
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="border-start border-danger border-3 mb-3 ps-3">
-              <h6 className="fw-medium mb-1">Design System With Client</h6>
-              <p className="fs-12">
-                <i className="ti ti-calendar-check text-info me-2" />
-                24 Mar 2025
-              </p>
-            </div>
-            <div className="border-start border-success border-3 mb-3 ps-3">
-              <h6 className="fw-medium mb-1">UI/UX Team Call</h6>
-              <p className="fs-12">
-                <i className="ti ti-calendar-check text-info me-2" />
-                28 Mar 2025
-              </p>
+
+            {/* Full Calendar */}
+            <div className="col-12 col-md-9 theiaStickySidebar">
+              <div className="stickybar overflow:none">
+                <div className="card border-0 shadow-sm">
+                  <div className="card-body">
+                    <FullCalendar
+                      plugins={[
+                        dayGridPlugin,
+                        timeGridPlugin,
+                        interactionPlugin,
+                      ]}
+                      initialView={
+                        window.innerWidth < 768 ? "dayGridWeek" : "dayGridMonth"
+                      }
+                      events={events}
+                      headerToolbar={{
+                        start: "today,prev,next",
+                        center: "title",
+                        end: "dayGridMonth,dayGridWeek,dayGridDay",
+                      }}
+                      eventClick={handleEventClick}
+                      ref={calendarRef}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  {/* Full Calendar */}
-  <div className="col-12 col-md-9 theiaStickySidebar">
-    <div className="stickybar overflow:none">
-      <div className="card border-0 shadow-sm">
-        <div className="card-body">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView={window.innerWidth < 768 ? "dayGridWeek" : "dayGridMonth"}
-            events={events}
-            headerToolbar={{
-              start: "today,prev,next",
-              center: "title",
-              end: "dayGridMonth,dayGridWeek,dayGridDay",
-            }}
-            eventClick={handleEventClick}
-            ref={calendarRef}
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-        </div>
-        </div>
-        
-   
       {/* /Page Wrapper */}
-
 
       {/* Event */}
       <Modal show={showEventDetailsModal} onHide={handleEventDetailsClose}>
         <div className="modal-header bg-dark modal-bg">
           <div className="modal-title text-white">
-            <span id="eventTitle" >{eventDetails}</span>
+            <span id="eventTitle">{eventDetails}</span>
           </div>
           <button
             type="button"
@@ -328,7 +335,13 @@ const Calendars = () => {
                       <div className="mb-3">
                         <label className="form-label">Start Time</label>
                         <div className="input-icon-end position-relative">
-                        <TimePicker getPopupContainer={getModalContainer2} use12Hours placeholder="Choose" format="h:mm A" className="form-control timepicker" />
+                          <TimePicker
+                            getPopupContainer={getModalContainer2}
+                            use12Hours
+                            placeholder="Choose"
+                            format="h:mm A"
+                            className="form-control timepicker"
+                          />
                           <span className="input-icon-addon">
                             <i className="ti ti-clock text-gray-7" />
                           </span>
@@ -339,7 +352,13 @@ const Calendars = () => {
                       <div className="mb-3">
                         <label className="form-label">End Time</label>
                         <div className="input-icon-end position-relative">
-                        <TimePicker getPopupContainer={getModalContainer2} use12Hours placeholder="Choose" format="h:mm A" className="form-control timepicker" />
+                          <TimePicker
+                            getPopupContainer={getModalContainer2}
+                            use12Hours
+                            placeholder="Choose"
+                            format="h:mm A"
+                            className="form-control timepicker"
+                          />
                           <span className="input-icon-addon">
                             <i className="ti ti-clock text-gray-7" />
                           </span>
@@ -382,19 +401,10 @@ const Calendars = () => {
         {/* /Add New Event */}
       </>
 
-       {/* <Modal  show={setShowAddEventModal} onHide={handleEventDetailsClose}>
+      {/* <Modal  show={setShowAddEventModal} onHide={handleEventDetailsClose}>
         <AddTask />
       </Modal> */}
-   
-
-  
-
-
-
-
-
     </>
-
   );
 };
 

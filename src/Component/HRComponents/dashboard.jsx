@@ -1,392 +1,451 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./App.css";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 const HRDashboard = () => {
+  const calendarRef = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [calendarView, setCalendarView] = useState(
+    window.innerWidth < 768 ? "timeGridDay" : "dayGridMonth"
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setCalendarView(window.innerWidth < 768 ? "timeGridDay" : "dayGridMonth");
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleEventClick = (e) => {
+    alert(`Event: ${e.event.title}`);
+  };
+
+  const events = [
+    {
+      title: "Meeting with Team Dev",
+      backgroundColor: "#FFEDF6",
+      textColor: "#FD3995",
+      start: new Date(Date.now() - 168000000).toISOString().slice(0, 10),
+      end: new Date(Date.now() - 168000000).toISOString().slice(0, 10),
+    },
+    {
+      title: "UI/UX Team...",
+      backgroundColor: "#EDF2F4",
+      textColor: "#0C4B5E",
+      start: new Date(Date.now() + 338000000).toISOString().slice(0, 10),
+    },
+    {
+      title: "Data Update...",
+      backgroundColor: "#F7EEF9",
+      textColor: "#AB47BC",
+      start: new Date(Date.now() - 338000000).toISOString().slice(0, 10),
+    },
+    {
+      title: "Meeting with Team Dev",
+      backgroundColor: "#E8E9EA",
+      textColor: "#212529",
+      start: new Date(Date.now() + 68000000).toISOString().slice(0, 10),
+    },
+    {
+      title: "Design System",
+      backgroundColor: "#FAE7E7",
+      textColor: "#E70D0D",
+      start: new Date(Date.now() + 88000000).toISOString().slice(0, 10),
+    },
+  ];
+
   return (
     <div className="page-wrapper">
-           <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-9">
-            <header>
-              <div className="container-fluid my-2">
-                <div className="product-slider">
-                  <div className="slider-wrapper">
-                    {/* Product Images */}
-                    <div className="row d-flex">
-                      <div className="col-md-6">
-                        <div className="product">
-                          <img
-                            src="https://i.ibb.co/p3ZmWPP/Screenshot-2025-01-03-163622.png"
-                            alt="Product 1"
-                          />
+      <section>
+        <div className="container mt-4">
+          <div className="dashboard">
+            <h3>Dashboard</h3>
+            <nav>
+              <a href="#" className="text-decoration-none" style={{color: "#01acb4"}}>
+                Dashboard
+              </a>{" "}
+              &gt; HR
+            </nav>
+            <div className="card p-4 mt-3 shadow-sm border-0">
+              <h5>Today's Not Clock In</h5>
+              <hr />
+              <div className="not-clocked-in mx-4">
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg"
+                    alt="User"
+                    className="profile-img"
+                  />
+                  <span>Protiong</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px "
+                    className="profile-img"
+                  />
+                  <span>Cooper Decker</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px"
+                    className="profile-img"
+                  />
+                  <span>Brianna Copeland</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px"
+                    className="profile-img"
+                  />
+                  <span>Kjh donald</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px"
+                    className="profile-img"
+                  />
+                  <span>Emma Hopper</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px"
+                    className="profile-img"
+                  />
+                  <span>Tara Hicks</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px"
+                    className="profile-img"
+                  />
+                  <span>Ralph Mercer</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px"
+                    className="profile-img"
+                  />
+                  <span>Anne George</span>
+                </div>
+                <div className="img-hr-box">
+                  <img
+                    src="https://i.ibb.co/ZpjJwGJ8/user-11.jpg55px"
+                    className="profile-img"
+                  />
+                  <span>Isabel Clemo</span>
+                </div>
+              </div>
+            </div>
+            <div className="row mt-4">
+              <div className="col-md-12">
+                <div className="row">
+                  <div className="col-md-9">
+                    <div className="card calendar p-3 shadow w-100">
+                      <h5>Event</h5>
+
+                      <hr />
+
+
+                      <FullCalendar
+                        plugins={[
+                          dayGridPlugin,
+                          timeGridPlugin,
+                          interactionPlugin,
+                        ]}
+                        initialView={calendarView}
+                        events={events}
+                        headerToolbar={{
+                          start: "today,prev,next",
+                          center: "title",
+                          end: "dayGridMonth,timeGridWeek,timeGridDay",
+                        }}
+                        height={"auto"} // Ensures the calendar adapts to the container
+                        aspectRatio={windowWidth < 768 ? 0.6 : 1.5} // Adjusts aspect ratio dynamically
+                        eventClick={handleEventClick}
+                        ref={calendarRef}
+                        editable={true} // Allow event dragging & resizing
+                        selectable={true} // Allow users to select time slots
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="card staff-card shadow-sm border-0">
+                      <h5>Staff</h5>
+                      <div className="row mt-3 mb-4">
+                        <div className="col-md-6 d-flex">
+                          <span>
+                            <i
+                              className="fa-solid fa-user-group text-white rounded-3"
+                              style={{
+                                padding: "15px 13px",
+                                backgroundColor: "#4CAF50",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>
+                              Total <br /> Staff
+                            </p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#4CAF50" }}>
+                              15
+                            </h4>
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex">
+                          <span>
+                            <i
+                              className="fa-solid fa-user-group text-white rounded-3"
+                              style={{
+                                padding: "15px 13px",
+                                backgroundColor: "#3ec9d6",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>Total Employee</p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#3ec9d6" }}>
+                              7
+                            </h4>
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex mt-4">
+                          <span>
+                            <i
+                              className="fa-solid fa-user-group text-white rounded-3"
+                              style={{
+                                padding: "15px 13px",
+                                backgroundColor: "#ff3a6e",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>Total Client</p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#ff3a6e" }}>
+                              8
+                            </h4>
+                          </span>
                         </div>
                       </div>
-                      <div className="col-md-6">
-                        <div className="product">
-                          <img
-                            src="https://i.ibb.co/0YxzyjT/Screenshot-2025-01-03-165427.png"
-                            alt="Product 1"
-                          />
+                    </div>
+                    <div className="card staff-card shadow-sm border-0 my-4">
+                      <h5>Job</h5>
+                      <div className="row mt-3 mb-4">
+                        <div className="col-md-6 d-flex">
+                          <span>
+                            <i
+                              className="fa-solid fa-certificate text-white rounded-3"
+                              style={{
+                                padding: "15px 15px",
+                                backgroundColor: "#4CAF50",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>
+                              Total <br /> Jobs
+                            </p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#4CAF50" }}>
+                              4
+                            </h4>
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex">
+                          <span>
+                            <i
+                              className="fa-solid fa-check text-white rounded-3"
+                              style={{
+                                padding: "15px 15px",
+                                backgroundColor: "#3ec9d6",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>Active Jobs</p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#3ec9d6" }}>
+                              4
+                            </h4>
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex mt-4">
+                          <span>
+                            <i
+                              className="fa-solid fa-xmark text-white rounded-3"
+                              style={{
+                                padding: "15px 17px",
+                                backgroundColor: "#ff3a6e",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>Inactive Jobs</p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#ff3a6e" }}>
+                              0
+                            </h4>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="card staff-card shadow-sm border-0 my-4">
+                      <h5>Training</h5>
+                      <div className="row mt-3 mb-4">
+                        <div className="col-md-6 d-flex">
+                          <span>
+                            <i
+                              className="fa-solid fa-user-group text-white rounded-3"
+                              style={{
+                                padding: "15px 13px",
+                                backgroundColor: "#4CAF50",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>
+                              Total <br /> Training
+                            </p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#4CAF50" }}>
+                              2
+                            </h4>
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex">
+                          <span>
+                            <i
+                              className="fa-solid fa-user text-white rounded-3"
+                              style={{
+                                padding: "15px 13px",
+                                backgroundColor: "#3ec9d6",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>Trainer</p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#3ec9d6" }}>
+                              4
+                            </h4>
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex mt-4">
+                          <span>
+                            <i
+                              className="fa-solid fa-user-plus text-white rounded-3"
+                              style={{
+                                padding: "15px 13px",
+                                backgroundColor: "#ff3a6e",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>Active Training</p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "#ff3a6e" }}>
+                              1
+                            </h4>
+                          </span>
+                        </div>
+                        <div className="col-md-6 d-flex mt-4">
+                          <span>
+                            <i
+                              className="fa-solid fa-user-minus text-white rounded-3"
+                              style={{
+                                padding: "15px 13px",
+                                backgroundColor: "gray",
+                              }}
+                            />
+                          </span>
+                          <span className="ms-2">
+                            <p>Done Training</p>
+                            <h4 className="mb-2" style={{ lineHeight: "2px", color: "gray" }}>
+                              1
+                            </h4>
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </header>
-            <div
-              className="mx-4 mb-4"
-              style={{borderRadius: 15,backgroundColor: "rgb(245 245 245)" }}
-            >
-              <div className="row text-dark p-2 my-2 mx-1">
-                <div
-                  className="col-md-1"
-                  style={{
-                    backgroundColor: "lightgray",
-                    borderRadius: "16px",
-                    padding: "5px 17px",
-                  }}
-                >
-                  <span>
-                    6 <br /> <span>To do's</span>
-                  </span>
-                </div>
-                <div className="col-md-2 text-dark">
-                  <span>
-                    2<br /> <span>Performance</span>
-                  </span>
-                </div>
-                <div className="col-md-2  text-dark">
-                  <span>
-                    2<br /> <span >Recruiment</span>
-                  </span>
-                </div>
-                <div className="col-md-1  text-dark">
-                  <span>
-                    2<br /> <span >HR</span>
-                  </span>
-                </div>
-              </div>
-              <table className="table table-striped HR_table text-center">
-                <tbody>
-                  <tr>
-                    <td className="px-4">
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color: "black" }}
-                      >
-                        <i className="fa-solid fa-users p-2" />
-                      </span>
-                    </td>
-                    <td className="text-dark">Legal action relating to implement</td>
-                    <td className="text-danger">Due in 1 day</td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray", color: "black" }}
-                      >
-                        Training
-                      </span>
-                    </td>
-                    <td>
-                      <img
-                        src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                        height="30px"
-                        className="rounded-circle mb-1 mx-2"
-                        alt="Team Member 1" style={{height: "30px"}}
-                      />
-                      Jane Doe
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill px-2 py-1"
-                        style={{ backgroundColor: "lightgray",color:"black" }}
-                      >
-                        Take action
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        <i className="fa-solid fa-ellipsis" />
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-4">
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        <i className="fa-solid fa-bullhorn p-2" />
-                      </span>
-                    </td>
-                    <td>Pending feedback for Screen Call Interview</td>
-                    <td className="text-warning">Due in 5 days</td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray", color:"black" }}
-                      >
-                        Interview
-                      </span>
-                    </td>
-                    <td>
-                      <img
-                        src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                        height="30px"
-                        className="rounded-circle mb-1 mx-2"
-                        alt="Team Member 1" style={{height: "30px"}}
-                      />
-                      Jane Doe
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill px-3 py-2"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        Add feedback
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        <i className="fa-solid fa-ellipsis" />
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-4">
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        <i className="fa-solid fa-arrow-up-right-dots p-2" />
-                      </span>
-                    </td>
-                    <td>KPI Monthly revenue($m)</td>
-                    <td className="text">Due in 11 day</td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray", color: "black" }}
-                      >
-                        Performance
-                      </span>
-                    </td>
-                    <td>
-                      <img
-                        src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                        height="30px"
-                        className="rounded-circle mb-1 mx-2"
-                        alt="Team Member 1" style={{height: "30px"}}
-                      />
-                      Jane Doe
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill px-2 py-1"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        Take action
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        <i className="fa-solid fa-ellipsis" />
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-4">
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        <i className="fa-solid fa-book p-2" />
-                      </span>
-                    </td>
-                    <td>Upcoming Screen Call interview</td>
-                    <td className="text">Due in 25 day</td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray", color: "black" }}
-                      >
-                        Interview
-                      </span>
-                    </td>
-                    <td>
-                      <img
-                        src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                        height="30px"
-                        className="rounded-circle mb-1 mx-2"
-                        alt="Team Member 1" style={{height: "30px"}}
-                      />
-                      Jane Doe
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill px-2 py-1"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        Add feedback
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        className="badge rounded-pill"
-                        style={{ backgroundColor: "lightgray",color:"black"  }}
-                      >
-                        <i className="fa-solid fa-ellipsis" />
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
-          </div>
-          <div className="col-md-3 my-4">
-            <div
-              style={{
-                backgroundColor: "rgb(245 245 245)",
-                borderRadius: 15,
-                padding: 20,
-              }}
-            >
-              <div className="text-dark d-flex justify-content-between">
-                <span style={{ color: "gray", cursor: "pointer" }}>
-                  In your team
-                </span>
-                <span style={{ color: "#4c50b3", cursor: "pointer" }}>
-                  See all
-                </span>
-              </div>
-              <div className="row mb-4 my-4">
-                <div className="col-md-3 text-center">
-                  <img
-                    src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                    height="65px"
-                    className="rounded-circle mb-1"
-                    alt="Team Member 1"
-                  />
-                  <span className="text-dark">John</span>
-                </div>
-                <div className="col-md-3 text-center">
-                  <img
-                    src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                    height="65px"
-                    className="rounded-circle mb-1"
-                    alt="Team Member 2"
-                  />
-                  <span className="text-dark">Alice</span>
-                </div>
-                <div className="col-md-3 text-center">
-                  <img
-                    src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                    height="65px"
-                    className="rounded-circle mb-1"
-                    alt="Team Member 3"
-                  />
-                  <span className="text-dark">Emma</span>
-                </div>
-                <div className="col-md-3 text-center">
-                  <img
-                    src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                    height="65px"
-                    className="rounded-circle mb-1"
-                    alt="Team Member 4"
-                  />
-                  <span className="text-dark">Mike</span>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="card p-3 shadow border-0 rounded-3">
+                  <h5 className="mb-4">Announcement List</h5>
+                  <div className="table-responsive">
+                    <table className="table mb-5">
+                      <thead className="table-light">
+                        <tr>
+                          <th scope="col">TITLE</th>
+                          <th scope="col">START DATE</th>
+                          <th scope="col">END DATE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Sports Scream</td>
+                          <td>Jul 21, 2021</td>
+                          <td>Jul 21, 2021</td>
+                        </tr>
+                        <tr>
+                          <td>My New Businesss</td>
+                          <td>Jul 21, 2021</td>
+                          <td>Jul 21, 2021</td>
+                        </tr>
+                        <tr>
+                          <td>WE WANT TO EARN YOUR DEEPEST TRUST.</td>
+                          <td>Jul 21, 2021</td>
+                          <td>Jul 21, 2021</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              style={{
-                backgroundColor: "rgb(245 245 245)",
-                borderRadius: 15,
-                padding: 20,
-                marginTop: 20,
-              }}
-            >
-              <div className="text-dark mb-2 d-flex justify-content-between">
-                <span style={{ color: "gray", cursor: "pointer" }}>
-                  Favourites
-                </span>
-                <span style={{ color: "#4c50b3", cursor: "pointer" }}>
-                  <i className="fa-solid fa-pen" />
-                </span>
-              </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="d-flex align-items-center mb-3 my-4">
-                    <img
-                      src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                      height="40px"
-                      className="rounded-circle me-2"
-                      alt="Favourite 1" style={{height: "30px"}}
-                    />
-                    <span className="text-dark">
-                      Sophia <br /> (Product Designer)
-                    </span>
-                  </div>
-                  <div className="d-flex align-items-center mb-3 my-4">
-                    <img
-                      src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                      height="40px"
-                      className="rounded-circle me-2"
-                      alt="Favourite 2" style={{height: "30px"}}
-                    />
-                    <span className="text-dark">
-                      James <br /> (Executive)
-                    </span>
-                  </div>
-                  <div className="d-flex align-items-center mb-3 my-3">
-                    <img
-                      src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                      height="40px"
-                      className="rounded-circle me-2"
-                      alt="Favourite 3" style={{height: "30px"}}
-                    />
-                    <span className="text-dark">
-                      Olivia <br /> (HR)
-                    </span>
-                  </div>
-                  <div className="d-flex align-items-center my-4">
-                    <img
-                      src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                      height="40px"
-                      className="rounded-circle me-2"
-                      alt="Favourite 4" style={{height: "30px"}}
-                    />
-                    <span className="text-dark">
-                      Liam <br /> (Manager)
-                    </span>
-                  </div>
-                  <div className="d-flex align-items-center my-4">
-                    <img
-                      src="https://i.ibb.co/0jDtZjF/6773bd1f5c33b1735638303.jpg"
-                      height="40px"
-                      className="rounded-circle me-2"
-                      alt="Favourite 4" style={{height: "30px"}}
-                    />
-                    <span className="text-dark">
-                      Liam <br /> (Manager)
-                    </span>
+              <div className="col-md-6 mb-5">
+                <div className="card p-3 shadow-sm border-0 rounded-3">
+                  <h5 className="mb-4">Meeting schedule</h5>
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead className="table-light">
+                        <tr>
+                          <th scope="col">TITLE</th>
+                          <th scope="col">DATE</th>
+                          <th scope="col">Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Event Related</td>
+                          <td>Jan 18, 2024</td>
+                          <td>12:20 PM</td>
+                        </tr>
+                        <tr>
+                          <td>New Technology</td>
+                          <td>Feb 24, 2024</td>
+                          <td>12:26 PM</td>
+                        </tr>
+                        <tr>
+                          <td>Meeting: Weekly Team Meeting</td>
+                          <td>Mar 21, 2024</td>
+                          <td>7:29 PM</td>
+                        </tr>
+                        <tr>
+                          <td>Marketing Campaign Review</td>
+                          <td>Apr 21, 2024</td>
+                          <td>6:10 PM</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
